@@ -1,27 +1,33 @@
 package scenarios;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObjects.chrome.GooglePageObject;
 import setup.BaseTest;
 
 public class webMobileTests extends BaseTest {
 
-    @Test(groups = {"web"}, description = "Make sure that we've opened IANA homepage")
-    public void simpleWebTest() throws InterruptedException {
-        getDriver().get("http://iana.org"); // open IANA homepage
+    GooglePageObject googlePageObject;
 
+    @BeforeClass(groups = {"web"})
+    public void beforeClass() {
+        googlePageObject = new GooglePageObject(getDriver());
+    }
+
+    @Test(groups = {"web"},
+            dataProvider = "Search string provider",
+            dataProviderClass = DataProviders.class,
+            description = "Open Google and search 'epam' in google query")
+    public void simpleWebTest(String searchString) throws InterruptedException {
+        googlePageObject.open();
         // Make sure that page has been loaded completely
-        new WebDriverWait(getDriver(), 10).until(
-                wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
-        );
-
-        // Check IANA homepage title
-        assert ((WebDriver) getDriver()).getTitle().equals("Internet Assigned Numbers Authority") : "This is not IANA homepage";
-
-        // Log that test finished
-        System.out.println("Site opening done");
+        googlePageObject.waitLoading();
+        googlePageObject.search(searchString);
+        boolean resultIsDisplayed = googlePageObject
+                .getResultPage()
+                .resultIsDisplayed();
+        Assert.assertTrue(resultIsDisplayed);
     }
 
 }
