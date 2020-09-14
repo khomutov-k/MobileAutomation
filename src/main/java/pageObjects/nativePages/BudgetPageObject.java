@@ -17,6 +17,7 @@ public class BudgetPageObject {
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
     }
 
+
     public String getTitle() {
         return title.getText();
     }

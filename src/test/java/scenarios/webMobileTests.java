@@ -7,23 +7,19 @@ import pageObjects.chrome.GooglePageObject;
 import setup.BaseTest;
 
 public class webMobileTests extends BaseTest {
-
     GooglePageObject googlePageObject;
 
     @BeforeClass(groups = {"web"})
     public void beforeClass() {
-        googlePageObject = new GooglePageObject(getDriver());
+        googlePageObject = ((GooglePageObject) getHomePage());
     }
-
-    @Test(groups = {"web"},
-            dataProvider = "Search string provider",
-            dataProviderClass = DataProviders.class,
-            description = "Open Google and search 'epam' in google query")
-    public void simpleWebTest(String searchString) throws InterruptedException {
+    @Test(groups = {"web"}, description = "Open Google and search epam ")
+    public void simpleWebTest() throws InterruptedException {
+        googlePageObject = ((GooglePageObject) getHomePage());
         googlePageObject.open();
         // Make sure that page has been loaded completely
         googlePageObject.waitLoading();
-        googlePageObject.search(searchString);
+        googlePageObject.search("Epam");
         boolean resultIsDisplayed = googlePageObject
                 .getResultPage()
                 .resultIsDisplayed();

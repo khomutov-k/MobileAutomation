@@ -6,20 +6,15 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.PageObject;
 
-public class GooglePageObject {
+public class GooglePageObject extends PageObject {
 
     @FindBy(css = "input[name=q]")
     WebElement inputField;
 
     AppiumDriver appiumDriver;
-
-    public GooglePageObject(AppiumDriver appiumDriver) {
-        PageFactory.initElements(appiumDriver, this);
-        this.appiumDriver = appiumDriver;
-    }
 
     public void open() {
         appiumDriver.get("http://google.com");
@@ -49,5 +44,9 @@ public class GooglePageObject {
         appiumDriver.context("NATIVE_APP"); // set context to NATIVE
         appiumDriver.findElement(By.id("android:id/button1")).click();
         appiumDriver.context("CHROMIUM");
+    }
+
+    public GooglePageObject(AppiumDriver appiumDriver) {
+        super(appiumDriver);
     }
 }

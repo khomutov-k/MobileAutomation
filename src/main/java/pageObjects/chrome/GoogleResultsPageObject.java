@@ -3,11 +3,11 @@ package pageObjects.chrome;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import pageObjects.PageObject;
 
 import java.util.List;
 
-public class GoogleResultsPageObject {
+public class GoogleResultsPageObject extends PageObject {
 
     @FindBy(css = "#search div.g")
     List<WebElement> resultStrings;
@@ -16,7 +16,7 @@ public class GoogleResultsPageObject {
         return resultStrings != null;
     }
 
-    public GoogleResultsPageObject(AppiumDriver driver) {
-        PageFactory.initElements(driver, this);
+    public GoogleResultsPageObject(AppiumDriver appiumDriver) {
+        super(appiumDriver);
     }
 }
