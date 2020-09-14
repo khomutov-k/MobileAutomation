@@ -3,11 +3,9 @@ package pageObjects.nativePages;
 import domain.User;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationPageObject implements IRegister{
+public class RegistrationPageObject extends NativePageObject implements IRegister{
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/registration_email")
     WebElement emailField;
@@ -23,7 +21,7 @@ public class RegistrationPageObject implements IRegister{
     WebElement cancelBtn;
 
     public RegistrationPageObject(AppiumDriver appiumDriver) {
-        PageFactory.initElements( new AppiumFieldDecorator(appiumDriver), this);
+        super(appiumDriver);
     }
 
     public void register(User user) {

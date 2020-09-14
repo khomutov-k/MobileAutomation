@@ -3,11 +3,9 @@ package pageObjects.nativePages;
 import domain.User;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 
-public class HomePageObject implements ILogin {
+public class HomePageObject extends NativePageObject implements ILogin {
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/email_sign_in_button")
     WebElement signInBtn;
@@ -21,8 +19,6 @@ public class HomePageObject implements ILogin {
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/register_button")
     WebElement registerNewUserBtn;
 
-    AppiumDriver appiumDriver;
-
     public IRegister getRegistrationPage() {
         return new RegistrationPageObject(appiumDriver);
     }
@@ -32,8 +28,7 @@ public class HomePageObject implements ILogin {
     }
 
     public HomePageObject(AppiumDriver appiumDriver) {
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
-        this.appiumDriver = appiumDriver;
+        super(appiumDriver);
     }
 
     public void login(User user) {

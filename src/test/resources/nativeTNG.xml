@@ -14,5 +14,8 @@
         <packages>
             <package name="scenarios"/>
         </packages>
+        <classes>
+            <class name="scenarios.nativeMobileTests"></class>
+        </classes>
     </test>
 </suite>

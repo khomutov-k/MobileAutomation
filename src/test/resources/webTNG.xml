@@ -13,5 +13,8 @@
         <packages>
             <package name="scenarios"/>
         </packages>
+        <classes>
+            <class name="scenarios.webMobileTests"></class>
+        </classes>
     </test>
 </suite>

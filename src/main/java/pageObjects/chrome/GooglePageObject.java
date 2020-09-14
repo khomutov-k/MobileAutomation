@@ -6,25 +6,20 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GooglePageObject {
+public class GooglePageObject extends WebPageObject{
 
     @FindBy(css = "input[name=q]")
     WebElement inputField;
 
-    AppiumDriver appiumDriver;
-
     public GooglePageObject(AppiumDriver appiumDriver) {
-        PageFactory.initElements(appiumDriver, this);
-        this.appiumDriver = appiumDriver;
+        super(appiumDriver);
     }
 
     public void open() {
         appiumDriver.get("http://google.com");
     }
-
 
     public void waitLoading() {
         new WebDriverWait(appiumDriver, 15).until(
@@ -32,13 +27,12 @@ public class GooglePageObject {
         );
     }
 
-
     public void search(String string) {
         inputField.sendKeys(string);
         inputField.sendKeys(Keys.ENTER);
     }
 
-    public GoogleResultsPageObject getResultPage() throws InterruptedException {
+    public GoogleResultsPageObject getResultPage() {
         waitLoading();
         acceptNativePopUp();
         waitLoading();
