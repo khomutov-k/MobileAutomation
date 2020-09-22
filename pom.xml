@@ -38,9 +38,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${suite.file}</suiteXmlFile>
                     </suiteXmlFiles>
-                    <systemPropertyVariables>
-                        <ts.appium>http://localhost:4723/wd/hub</ts.appium>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
@@ -57,7 +54,7 @@
 
     <profiles>
         <profile>
-            <id>native</id>
+            <id>androidNative</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -67,12 +64,30 @@
         </profile>
 
         <profile>
-            <id>web</id>
+            <id>androidWeb</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <suite.file>src/test/resources/webTNG.xml</suite.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>iosWeb</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/webIOS.xml</suite.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>iosNative</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/nativeIOS.xml</suite.file>
             </properties>
         </profile>
     </profiles>

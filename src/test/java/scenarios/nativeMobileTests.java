@@ -21,7 +21,6 @@ public class nativeMobileTests extends BaseTest {
             dataProviderClass = DataProviders.class,
             description = "This test register new user and then sign in")
     public void registerAndSignInTest(User user) {
-        getDriver().navigate().back();
         homePageObject.getRegisterNewUserBtn().click();
         homePageObject.getRegistrationPage()
                 .register(user);
@@ -30,7 +29,7 @@ public class nativeMobileTests extends BaseTest {
         String activityName = homePageObject
                 .getBugetPageObject()
                 .getTitle();
-        Assert.assertEquals(activityName, "BudgetActivity");
+        Assert.assertTrue(activityName.startsWith("Budget"));
     }
 
 }

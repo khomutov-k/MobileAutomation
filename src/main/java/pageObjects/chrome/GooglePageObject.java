@@ -1,7 +1,6 @@
 package pageObjects.chrome;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -34,14 +33,7 @@ public class GooglePageObject extends WebPageObject{
 
     public GoogleResultsPageObject getResultPage() {
         waitLoading();
-        acceptNativePopUp();
-        waitLoading();
         return new GoogleResultsPageObject(appiumDriver);
     }
 
-    private void acceptNativePopUp() {
-        appiumDriver.context("NATIVE_APP"); // set context to NATIVE
-        appiumDriver.findElement(By.id("android:id/button1")).click();
-        appiumDriver.context("CHROMIUM");
-    }
 }
