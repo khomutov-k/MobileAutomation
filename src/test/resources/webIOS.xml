@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Web mobile testing Suite">
     <parameter name="appType" value="native"></parameter>
-    <parameter name="deviceName" value="iPhone 11"></parameter>
     <parameter name="udid" value="3e50758dd2e1179a014ee7b51dc4285d73118107"></parameter>
     <parameter name="browserName" value="Safari"></parameter>
     <parameter name="osVersion" value="12.4"></parameter>
